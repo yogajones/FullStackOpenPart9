@@ -17,7 +17,7 @@ const parseArguments = (args: string[]): BmiValues => {
   }
 };
 
-const calculateBmi = (height: number, weight: number): string => {
+export const calculateBmi = (height: number, weight: number): string => {
   const bmi: number = (weight / (height * height)) * 10000;
 
   if (bmi < 18.5) {
@@ -35,11 +35,9 @@ try {
   const { height, weight } = parseArguments(process.argv);
   console.log(calculateBmi(height, weight));
 } catch (error: unknown) {
-  let errorMessage = "Something went wrong: ";
+  let errorMessage = "Something went wrong with cmd usage: ";
   if (error instanceof Error) {
     errorMessage += error.message;
   }
   console.log(errorMessage);
 }
-
-export default { calculateBmi };
