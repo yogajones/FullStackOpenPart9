@@ -36,7 +36,7 @@ const parseArguments = (args: string[]): ExerciseValues => {
   };
 };
 
-const calculateExercises = (target: number, hours: number[]): Result => {
+export const calculateExercises = (target: number, hours: number[]): Result => {
   const periodLength = hours.length;
   const totalHours = hours.reduce((sum, hour) => sum + hour, 0);
   const average = totalHours / periodLength;
@@ -63,7 +63,7 @@ const calculateExercises = (target: number, hours: number[]): Result => {
       (count, hour) => (hour > 0 ? count + 1 : count),
       0,
     ),
-    success: target >= average,
+    success: average >= target,
     rating: rating,
     ratingDescription: ratingDescription,
     target: target,
@@ -81,5 +81,3 @@ try {
   }
   console.log(errorMessage);
 }
-
-export default { calculateExercises };
