@@ -4,7 +4,7 @@ import { calculateBmi } from "./bmiCalculator";
 const app = express();
 
 app.get("/hello", (_req, res) => {
-  res.send("Hello Full Stack!");
+  return res.send("Hello Full Stack!");
 });
 
 app.get("/bmi", (req, res) => {
@@ -13,16 +13,16 @@ app.get("/bmi", (req, res) => {
     const weight = Number(req.query.weight);
     if (!isNaN(height) && !isNaN(weight)) {
       const bmi: string = calculateBmi(height, weight);
-      res.json({ height, weight, bmi });
+      return res.json({ height, weight, bmi });
     } else {
-      res.json({ error: "malformatted parameters" });
+      return res.status(400).send({ error: "malformatted parameters" });
     }
   } catch (error: unknown) {
     let errorMessage = "Something went wrong: ";
     if (error instanceof Error) {
       errorMessage += error.message;
     }
-    console.log(errorMessage);
+    return res.status(400).send({ errorMessage });
   }
 });
 
