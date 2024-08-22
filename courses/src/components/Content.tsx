@@ -1,10 +1,8 @@
-interface Course {
-  name: string;
-  exerciseCount: number;
-}
+import { CoursePart } from "../types";
+import { Part } from "./Part";
 
 interface ContentProps {
-  courses: Course[];
+  courses: CoursePart[];
 }
 
 export const Content = (props: ContentProps) => {
@@ -12,7 +10,7 @@ export const Content = (props: ContentProps) => {
     <div>
       {props.courses.map((course, index) => (
         <p key={index}>
-          {course.name} {course.exerciseCount}
+          <Part course={course} />
         </p>
       ))}
     </div>
