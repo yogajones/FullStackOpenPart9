@@ -5,23 +5,29 @@ import { Visibility, Weather } from "../types";
 
 export const NewEntryForm = () => {
   const [date, setDate] = useState("");
-  const [weather, setWeather] = useState("");
-  const [visibility, setVisibility] = useState("");
+  const [weather, setWeather] = useState<Weather | null>(null);
+  const [visibility, setVisibility] = useState<Visibility | null>(null);
   const [comment, setComment] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const handleNewEntry = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+
+    if (!weather || !visibility) {
+      setError("Both weather and visibility are required.");
+      return;
+    }
+
     try {
       await createEntry({
         date: date,
-        weather: weather as Weather,
-        visibility: visibility as Visibility,
+        weather: weather,
+        visibility: visibility,
         comment: comment,
       });
       setDate("");
-      setWeather("");
-      setVisibility("");
+      setWeather(null);
+      setVisibility(null);
       setComment("");
       setError(null);
     } catch (error) {
@@ -40,19 +46,105 @@ export const NewEntryForm = () => {
       <form onSubmit={handleNewEntry}>
         {" "}
         date:{" "}
-        <input value={date} onChange={(event) => setDate(event.target.value)} />
+        <input
+          type="date"
+          value={date}
+          onChange={(event) => setDate(event.target.value)}
+        />
         <br />
         weather:{" "}
-        <input
-          value={weather}
-          onChange={(event) => setWeather(event.target.value)}
-        />
+        <label>
+          sunny
+          <input
+            type="radio"
+            name="weather"
+            value={Weather.Sunny}
+            checked={weather === Weather.Sunny}
+            onChange={() => setWeather(Weather.Sunny)}
+          />
+        </label>
+        <label>
+          rainy
+          <input
+            type="radio"
+            name="weather"
+            value={Weather.Rainy}
+            checked={weather === Weather.Rainy}
+            onChange={() => setWeather(Weather.Rainy)}
+          />
+        </label>
+        <label>
+          cloudy
+          <input
+            type="radio"
+            name="weather"
+            value={Weather.Cloudy}
+            checked={weather === Weather.Cloudy}
+            onChange={() => setWeather(Weather.Cloudy)}
+          />
+        </label>
+        <label>
+          stormy
+          <input
+            type="radio"
+            name="weather"
+            value={Weather.Stormy}
+            checked={weather === Weather.Stormy}
+            onChange={() => setWeather(Weather.Stormy)}
+          />
+        </label>
+        <label>
+          windy
+          <input
+            type="radio"
+            name="weather"
+            value={Weather.Windy}
+            checked={weather === Weather.Windy}
+            onChange={() => setWeather(Weather.Windy)}
+          />
+        </label>
         <br />
         visibility:{" "}
-        <input
-          value={visibility}
-          onChange={(event) => setVisibility(event.target.value)}
-        />
+        <label>
+          great
+          <input
+            type="radio"
+            name="visibility"
+            value={Visibility.Great}
+            checked={visibility === Visibility.Great}
+            onChange={() => setVisibility(Visibility.Great)}
+          />
+        </label>
+        <label>
+          good
+          <input
+            type="radio"
+            name="visibility"
+            value={Visibility.Good}
+            checked={visibility === Visibility.Good}
+            onChange={() => setVisibility(Visibility.Good)}
+          />
+        </label>
+        <label>
+          ok
+          <input
+            type="radio"
+            name="visibility"
+            value={Visibility.Ok}
+            checked={visibility === Visibility.Ok}
+            onChange={() => setVisibility(Visibility.Ok)}
+          />
+        </label>
+        <label>
+          poor
+          <input
+            type="radio"
+            name="visibility"
+            value={Visibility.Poor}
+            checked={visibility === Visibility.Poor}
+            onChange={() => setVisibility(Visibility.Poor)}
+          />
+        </label>
         <br />
         comment:{" "}
         <input
