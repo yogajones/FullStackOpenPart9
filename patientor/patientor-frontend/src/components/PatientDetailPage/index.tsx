@@ -1,6 +1,7 @@
 import { useMatch } from "react-router-dom";
 import { usePatientDetails } from "./usePatientDetails";
 import { GenderIcon } from "./Gender";
+import { Entries } from "./Entries";
 import { Box, Typography as Typo } from "@mui/material";
 
 const PatientDetailPage = () => {
@@ -29,6 +30,7 @@ const PatientDetailPage = () => {
       </Typo>
       <Typo sx={{ marginTop: "1.5em" }}>ssn: {patient.ssn}</Typo>
       <Typo sx={{ marginTop: "0.5em" }}>occupation: {patient.occupation}</Typo>
+      <Entries entries={patient.entries} />
     </Box>
   );
 };
