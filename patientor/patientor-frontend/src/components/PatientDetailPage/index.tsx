@@ -1,5 +1,5 @@
 import { useMatch } from "react-router-dom";
-import { usePatientDetails } from "./usePatientDetails";
+import { useFetchPatientDetails } from "./useFetchPatientDetails";
 import { GenderIcon } from "./Gender";
 import { Entries } from "./Entries";
 import { Box, Typography as Typo } from "@mui/material";
@@ -8,7 +8,7 @@ const PatientDetailPage = () => {
   const match = useMatch("/api/patients/:id");
   const idParam = match?.params?.id;
 
-  const { patient, loading, error } = usePatientDetails(idParam);
+  const { patient, loading, error } = useFetchPatientDetails(idParam);
 
   if (loading) {
     return <Typo>Loading patient details...</Typo>;

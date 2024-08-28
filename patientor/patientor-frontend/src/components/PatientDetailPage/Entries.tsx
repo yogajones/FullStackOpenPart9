@@ -1,5 +1,6 @@
 import { Entry } from "../../types";
 import { Box, Typography as Typo, List, ListItem } from "@mui/material";
+import { Diagnosis } from "./Diagnosis";
 
 export const Entries = ({ entries }: { entries: Entry[] }) => {
   return (
@@ -22,7 +23,7 @@ export const Entries = ({ entries }: { entries: Entry[] }) => {
               <List dense={true}>
                 {entry.diagnosisCodes.map((code) => (
                   <ListItem key={code} sx={{ paddingLeft: "3em" }}>
-                    <Typo>{code}</Typo>
+                    <Diagnosis code={code} />
                   </ListItem>
                 ))}
               </List>

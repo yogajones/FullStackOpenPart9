@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Patient } from "../../types";
 import patientService from "../../services/patients";
 
-export const usePatientDetails = (idParam: string | undefined) => {
+export const useFetchPatientDetails = (idParam: string | undefined) => {
   const [patient, setPatient] = useState<Patient | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
