@@ -1,8 +1,8 @@
 import { useMatch } from "react-router-dom";
-import { useFetchPatientDetails } from "./useFetchPatientDetails";
-import { GenderIcon } from "./Gender";
-import { Entries } from "./Entries";
-import { Box, Typography as Typo } from "@mui/material";
+import { GenderIcon } from "./GenderIcon";
+import { EntryList } from "./EntryList";
+import { Box, Typography } from "@mui/material";
+import { useFetchPatientDetails } from "../../hooks/useFetchPatientDetails";
 
 const PatientDetailPage = () => {
   const match = useMatch("/api/patients/:id");
@@ -11,26 +11,28 @@ const PatientDetailPage = () => {
   const { patient, loading, error } = useFetchPatientDetails(idParam);
 
   if (loading) {
-    return <Typo>Loading patient details...</Typo>;
+    return <Typography>Loading patient details...</Typography>;
   }
 
   if (error) {
-    return <Typo color="error">{error}</Typo>;
+    return <Typography color="error">{error}</Typography>;
   }
 
   if (!patient) {
-    return <Typo>Patient not found.</Typo>;
+    return <Typography>Patient not found.</Typography>;
   }
 
   return (
     <Box className="App" sx={{ marginTop: "2.5em" }}>
-      <Typo align="left" variant="h5">
+      <Typography align="left" variant="h5">
         {patient.name}
         <GenderIcon gender={patient.gender} />
-      </Typo>
-      <Typo sx={{ marginTop: "1.5em" }}>ssn: {patient.ssn}</Typo>
-      <Typo sx={{ marginTop: "0.5em" }}>occupation: {patient.occupation}</Typo>
-      <Entries entries={patient.entries} />
+      </Typography>
+      <Typography sx={{ marginTop: "1.5em" }}>ssn: {patient.ssn}</Typography>
+      <Typography sx={{ marginTop: "0.5em" }}>
+        occupation: {patient.occupation}
+      </Typography>
+      <EntryList entries={patient.entries} />
     </Box>
   );
 };
