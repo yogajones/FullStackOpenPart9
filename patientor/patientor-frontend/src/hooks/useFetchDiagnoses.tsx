@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Diagnosis } from "../../types";
-import diagnosisService from "../../services/diagnoses";
+import { Diagnosis } from "../types";
+import diagnosisService from "../services/diagnoses";
 
 export const useFetchDiagnoses = () => {
   const [diagnoses, setDiagnoses] = useState<Diagnosis[]>([]);
