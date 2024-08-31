@@ -33,11 +33,11 @@ export const BaseEntryDetails = ({
       {icon}
     </Box>
     <DetailItem label="Date" value={entry.date} />
+    {children}
     <DetailItem label="Description" value={entry.description} />
     {entry.diagnosisCodes && (
       <DiagnosisList diagnosisCodes={entry.diagnosisCodes} />
     )}
-    {children}
     <DetailItem label="Saved by" value={entry.specialist} />
   </Box>
 );
