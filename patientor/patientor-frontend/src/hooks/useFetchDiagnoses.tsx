@@ -8,7 +8,10 @@ export const useFetchDiagnoses = () => {
   useEffect(() => {
     const fetchDiagnoses = async () => {
       const diagnoses = await diagnosisService.getAll();
-      setDiagnoses(diagnoses);
+      const sortedDiagnoses = diagnoses.sort((a, b) =>
+        a.code.localeCompare(b.code),
+      );
+      setDiagnoses(sortedDiagnoses);
     };
 
     void fetchDiagnoses();
