@@ -14,11 +14,13 @@ export const EntryList = ({ entries }: { entries: Entry[] }) => {
           No entries found.
         </Typography>
       ) : (
-        entries.map((entry) => (
-          <Box key={entry.id} sx={{ marginTop: "0.5em" }}>
-            <EntryDetails entry={entry} />
-          </Box>
-        ))
+        entries
+          .sort((a, b) => b.date.localeCompare(a.date))
+          .map((entry) => (
+            <Box key={entry.id} sx={{ marginTop: "0.5em" }}>
+              <EntryDetails entry={entry} />
+            </Box>
+          ))
       )}
     </Box>
   );
