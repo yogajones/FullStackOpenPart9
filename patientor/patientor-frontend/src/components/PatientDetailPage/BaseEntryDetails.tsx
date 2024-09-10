@@ -35,7 +35,7 @@ export const BaseEntryDetails = ({
     <DetailItem label="Date" value={entry.date} />
     {children}
     <DetailItem label="Description" value={entry.description} />
-    {entry.diagnosisCodes && (
+    {entry.diagnosisCodes && entry.diagnosisCodes.length > 0 && (
       <DiagnosisList diagnosisCodes={entry.diagnosisCodes} />
     )}
     <DetailItem label="Saved by" value={entry.specialist} />
