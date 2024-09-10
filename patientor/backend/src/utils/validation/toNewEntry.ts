@@ -79,7 +79,7 @@ const parseDischarge = (discharge: unknown): Discharge => {
 
 const parseEmployerName = (employerName: unknown): string => {
   if (!employerName || !isString(employerName)) {
-    throw new Error("Incorrect or missing employerName");
+    throw new Error("Incorrect or missing employer name");
   }
   return employerName;
 };
