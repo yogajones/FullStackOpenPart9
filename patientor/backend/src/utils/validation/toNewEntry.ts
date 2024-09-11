@@ -95,7 +95,7 @@ const parseHealthCheckRating = (
   healthCheckRating: unknown,
 ): HealthCheckRating => {
   if (
-    !healthCheckRating ||
+    healthCheckRating === undefined ||
     isNaN(Number(healthCheckRating)) ||
     !isHealthCheckRating(Number(healthCheckRating))
   ) {
